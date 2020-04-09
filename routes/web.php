@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/', 'DashboardController@index')
         ->name('dashboard.index');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/portofolio/destroy/{id}', 'PortofolioController@index')
         ->name('dashboard.portofolio.destory');
 
-    Route::get('/options', 'PortofolioController@index')
+    Route::get('/options', 'OptionController@index')
         ->name('dashboard.portofolio.index');
     Route::get('/option/create', 'OptionController@create')
         ->name('dashboard.option.create');
@@ -45,11 +45,26 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         ->name('dashboard.option.update');
     Route::get('/option/destroy/{id}', 'OptionController@index')
         ->name('dashboard.option.destory');
+
+    Route::get('/profil', 'ProfilController@index')
+        ->name('profil.index');
+    Route::get('/profil/create', 'ProfilController@create')
+        ->name('profil.create');
+    Route::get('/profil/store', 'ProfilController@store')
+        ->name('profil.store');
+    Route::get('/profil/{id}/show', 'ProfilController@show')
+        ->name('profil.show');
+    Route::get('/profil/{id}/edit', 'ProfilController@edit')
+        ->name('profil.edit');
+    Route::get('/profil/update/{id}', 'ProfilController@update')
+        ->name('profil.update');
+    Route::get('/profil/destroy/{id}', 'ProfilController@index')
+        ->name('profil.destory');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['register' => false]);
 
