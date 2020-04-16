@@ -46,20 +46,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/option/destroy/{id}', 'OptionController@index')
         ->name('dashboard.option.destory');
 
-    Route::get('/profil', 'ProfilController@index')
-        ->name('profil.index');
-    Route::get('/profil/create', 'ProfilController@create')
-        ->name('profil.create');
-    Route::get('/profil/store', 'ProfilController@store')
-        ->name('profil.store');
-    Route::get('/profil/{id}/show', 'ProfilController@show')
-        ->name('profil.show');
-    Route::get('/profil/{id}/edit', 'ProfilController@edit')
-        ->name('profil.edit');
-    Route::get('/profil/update/{id}', 'ProfilController@update')
-        ->name('profil.update');
-    Route::get('/profil/destroy/{id}', 'ProfilController@index')
-        ->name('profil.destory');
+    // Profil
+    Route::get('/profile', 'ProfileController@index')
+        ->name('profile.index');
+    Route::Post('/profile/update', 'ProfileController@update')
+        ->name('profile.update');
+    Route::Post('/profile/update-password', 'ProfileController@updatePassword')
+        ->name('profile.update.password');
 });
 
 // Route::get('/', function () {

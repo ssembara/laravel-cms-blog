@@ -14,6 +14,8 @@
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
@@ -50,7 +52,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -77,10 +79,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{ $user->avatar_link }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -109,7 +111,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="{{ route('profil.index') }}" class="nav-link">
+                            <a href="{{ route('profile.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user-circle"></i>
                                 <p>Akun</p>
                             </a>
@@ -167,8 +169,46 @@
     <script src="{{ asset('js/adminlte.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('js/pages/dashboard.js') }}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <!-- Toastr -->
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('js/demo.js') }}"></script>
+    <script>
+        //preview avatar
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#previewImage').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#image").change(function () {
+            readURL(this);
+        });
+
+        let success = '{{ Session::has('success') }}';
+        let error = '{{ Session::has('error') }}';
+        let warning = '{{ Session::has('warning') }}';
+        let info = '{{ Session::has('info') }}';
+
+        if (success) {
+            toastr.success('{{ Session::get('success') }}');
+        } else if(error) {
+            toastr.error('{{ Session::get('error') }}');
+        } else if(warning) {
+            toastr.warning('{{ Session::get('warning') }}');
+        } else if(info) {
+            toastr.info('{{ Session::get('info') }}');
+        } 
+    </script>
+    @yield('footer-script')
 </body>
 
 </html>

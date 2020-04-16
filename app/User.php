@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarLinkAttribute()
+    {
+        return asset('uploads/user/' . $this->avatar);
+    }
 }
