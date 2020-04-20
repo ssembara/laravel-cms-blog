@@ -13,23 +13,23 @@
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
-    Route::get('/', 'DashboardController@index')
+    Route::GET('/', 'DashboardController@index')
         ->name('dashboard.index');
 
-    Route::get('/portofolios', 'PortofolioController@index')
-        ->name('dashboard.portofolio.index');
-    Route::get('/portofolio/create', 'PortofolioController@create')
-        ->name('dashboard.portofolio.create');
-    Route::get('/portofolio/store', 'PortofolioController@store')
-        ->name('dashboard.portofolio.store');
+    Route::GET('/portofolios', 'PortofolioController@index')
+        ->name('portofolio.index');
+    Route::GET('/portofolio/create', 'PortofolioController@create')
+        ->name('portofolio.create');
+    Route::POST('/portofolio/store', 'PortofolioController@store')
+        ->name('portofolio.store');
     Route::get('/portofolio/{id}/show', 'PortofolioController@show')
-        ->name('dashboard.portofolio.show');
-    Route::get('/portofolio/{id}/edit', 'PortofolioController@edit')
-        ->name('dashboard.portofolio.edit');
-    Route::get('/portofolio/update/{id}', 'PortofolioController@update')
-        ->name('dashboard.portofolio.update');
-    Route::get('/portofolio/destroy/{id}', 'PortofolioController@index')
-        ->name('dashboard.portofolio.destory');
+        ->name('portofolio.show');
+    Route::GET('/portofolio/{id}/edit', 'PortofolioController@edit')
+        ->name('portofolio.edit');
+    Route::POST('/portofolio/update/{id}', 'PortofolioController@update')
+        ->name('portofolio.update');
+    Route::POST('/portofolio/destroy/{id}', 'PortofolioController@destroy')
+        ->name('portofolio.destroy');
 
     Route::get('/options', 'OptionController@index')
         ->name('dashboard.portofolio.index');
@@ -47,11 +47,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         ->name('dashboard.option.destory');
 
     // Profil
-    Route::get('/profile', 'ProfileController@index')
+    Route::GET('/profile', 'ProfileController@index')
         ->name('profile.index');
-    Route::Post('/profile/update', 'ProfileController@update')
+    Route::POST('/profile/update', 'ProfileController@update')
         ->name('profile.update');
-    Route::Post('/profile/update-password', 'ProfileController@updatePassword')
+    Route::POST('/profile/update-password', 'ProfileController@updatePassword')
         ->name('profile.update.password');
 });
 
