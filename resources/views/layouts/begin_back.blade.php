@@ -105,13 +105,13 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('option.index') }}" class="nav-link @yield('option')">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>Pengaturan</p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="{{ route('profile.index') }}" class="nav-link">
+                            <a href="{{ route('profile.index') }}" class="nav-link @yield('profile')">
                                 <i class="nav-icon fas fa-user-circle"></i>
                                 <p>Akun</p>
                             </a>

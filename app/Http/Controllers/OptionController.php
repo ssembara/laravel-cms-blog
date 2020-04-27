@@ -2,83 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Option;
+use App\Portofolio;
+use Exception;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $greetings = Option::where('name', 'Greetings')
+            ->first();
+
+        return view('option.index')
+            ->with(['greetings' => $greetings]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function greeting(Request $request, $id)
     {
-        //
+        $rules = [
+            'content' => 'required|min: 3'
+        ];
+
+        $ruleMessages = [
+            'content.required' => 'Harus diisi',
+            'content.min' => 'Minimal 3 karakter'
+        ];
+
+        $this->validate($request, $rules, $ruleMessages);
+
+        $content = $request->greeting;
+        $greeting = Option::find($id);
+
+        DB::beginTransaction();
+        try {
+            $greeting->content = $content;
+            $greeting->save();
+            DB::commit();
+        } catch (Exception $error) {
+            DB::rollback();
+            Log::error($error);
+        }
+
+        return redirect()
+            ->back()
+            ->with('succes', 'Greetings berhasil dirubah');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function content()
     {
-        //
-    }
+        $user = User::first();
+        $portofolios = Portofolio::where('status', 1)
+            ->get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $greetings = Option::where('name', 'Greetings')
+            ->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('landing.index')
+            ->with([
+                'user' => $user,
+                'portofolios' => $portofolios,
+                'greetings' => $greetings
+            ]);
     }
 }

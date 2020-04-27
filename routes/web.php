@@ -10,12 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'OptionController@content')->name('content');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::GET('/', 'DashboardController@index')
         ->name('dashboard.index');
 
+    // Blog
     Route::GET('/portofolios', 'PortofolioController@index')
         ->name('portofolio.index');
     Route::GET('/portofolio/create', 'PortofolioController@create')
@@ -31,20 +33,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::POST('/portofolio/destroy/{id}', 'PortofolioController@destroy')
         ->name('portofolio.destroy');
 
+    // Option
     Route::get('/options', 'OptionController@index')
-        ->name('dashboard.portofolio.index');
-    Route::get('/option/create', 'OptionController@create')
-        ->name('dashboard.option.create');
-    Route::get('/option/store', 'OptionController@store')
-        ->name('dashboard.option.store');
-    Route::get('/option/{id}/show', 'OptionController@show')
-        ->name('dashboard.option.show');
-    Route::get('/option/{id}/edit', 'OptionController@edit')
-        ->name('dashboard.option.edit');
-    Route::get('/option/update/{id}', 'OptionController@update')
-        ->name('dashboard.option.update');
-    Route::get('/option/destroy/{id}', 'OptionController@index')
-        ->name('dashboard.option.destory');
+        ->name('option.index');
+    Route::get('/option/update/{id}/greeting', 'OptionController@greeting')
+        ->name('option.update.greeting');
 
     // Profil
     Route::GET('/profile', 'ProfileController@index')
