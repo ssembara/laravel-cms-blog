@@ -2,6 +2,8 @@
 
 @section('title') Landing Page @endsection
 
+@section('navbar') {{ $greeting->content }} @endsection
+
 @section('content')
 
 <!-- Masthead-->
@@ -18,7 +20,7 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+        <p class="masthead-subheading font-weight-light mb-0">{{ $skill->content }}</p>
     </div>
 </header>
 <!-- Portfolio Section-->
@@ -99,16 +101,9 @@
         </div>
         <!-- About Section Content-->
         <div class="row">
-            <div class="col-lg-12">
-                <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes
-                    the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets
-                    for easy customization.</p>
+            <div class="col-lg-12 text-center">
+                <p>{{ $aboutMe->content }}</p>
             </div>
-        </div>
-        <!-- About Section Button-->
-        <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/"><i
-                    class="fas fa-download mr-2"></i>Free Download!</a>
         </div>
     </div>
 </section>

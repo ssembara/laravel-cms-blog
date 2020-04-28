@@ -36,8 +36,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Option
     Route::get('/options', 'OptionController@index')
         ->name('option.index');
-    Route::get('/option/update/{id}/greeting', 'OptionController@greeting')
-        ->name('option.update.greeting');
+    Route::post('/option/update/{id}/greeting', 'OptionController@greeting')
+        ->name('option.greeting.update');
+    Route::post('/option/update/{id}/skill', 'OptionController@skill')
+        ->name('option.skill.update');
+    Route::post('/option/update/{id}/aboutme', 'OptionController@aboutMe')
+        ->name('option.aboutme.update');
+    Route::post('/option/update/{id}/location', 'OptionController@location')
+        ->name('option.location.update');
+    Route::post('/option/update/{id}/motivation', 'OptionController@motivation')
+        ->name('option.motivation.update');
 
     // Profil
     Route::GET('/profile', 'ProfileController@index')
