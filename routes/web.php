@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'OptionController@content')->name('content');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {

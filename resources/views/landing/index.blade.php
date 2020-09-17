@@ -9,8 +9,8 @@
 <!-- Masthead-->
 <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
-        <!-- Masthead Avatar Image--><img class="masthead-avatar rounded-circle mb-5" src="{{ $user->avatar_link }}"
-            alt="" />
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar rounded-circle mb-5" src="{{ $user->avatar_link }}"alt="" />
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0">{{ $user->name }}</h1>
         <!-- Icon Divider-->
@@ -27,7 +27,7 @@
 <section class="page-section portfolio" id="portfolio">
     <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portofolio</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>

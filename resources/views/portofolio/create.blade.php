@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="card-footer float-right">
-                                <a href="{{ route('dashboard.portofolio.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left pr-2"></i>
+                                <a href="{{ route('portofolio.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left pr-2"></i>
                                     Kembali</a>
                                 <button type="submit" class="btn btn-primary"><i class="fas fa-save pr-2"></i>
                                     Simpan</button>
